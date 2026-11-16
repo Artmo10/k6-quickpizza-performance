@@ -1,0 +1,9 @@
+perfil;maxCaloriesPerSlice;mustBeVegetarian;excludedIngredients;excludedTools;minNumberOfToppings;maxNumberOfToppings;stars;pizzaCalificar
+vegetariano_ligero;700;true;;Knife;2;5;5;1
+sin_pepperoni;900;false;Pepperoni;;2;6;4;2
+carnivoro;1200;false;;;3;7;3;3
+sin_lacteos;900;false;Mozzarella|Extra cheese|Parmesan cheese;;2;5;4;1
+dieta_estricta;700;true;Onions|Garlic;Knife;1;3;2;2
+sin_hongos;1000;false;Mushrooms;Scissors;2;6;5;3
+vegetariano_completo;1100;true;;;4;8;4;1
+clasico;1200;false;;;2;4;3;2

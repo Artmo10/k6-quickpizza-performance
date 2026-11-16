@@ -1,0 +1,517 @@
+{
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {
+            "setup": {
+                "name": "setup",
+                "path": "::setup",
+                "id": "5c0f8025f7e0b6654089e5b00e950f1a",
+                "groups": {},
+                "checks": {
+                        "csrf: status 200": {
+                            "name": "csrf: status 200",
+                            "path": "::setup::csrf: status 200",
+                            "id": "4d7e133cef5ce4d55d6c2c80d6f3d2d6",
+                            "passes": 2,
+                            "fails": 0
+                        },
+                        "csrf: token de 32 caracteres": {
+                            "name": "csrf: token de 32 caracteres",
+                            "path": "::setup::csrf: token de 32 caracteres",
+                            "id": "4391ce82c58e1ac1d222d8f0afe2deea",
+                            "passes": 2,
+                            "fails": 0
+                        },
+                        "login: status 200": {
+                            "name": "login: status 200",
+                            "path": "::setup::login: status 200",
+                            "id": "638c85000baaeede3d6e857733f783df",
+                            "passes": 2,
+                            "fails": 0
+                        },
+                        "login: token de 16 caracteres": {
+                            "name": "login: token de 16 caracteres",
+                            "path": "::setup::login: token de 16 caracteres",
+                            "id": "af91e82fcebb7d3f7797b13d2f8b9f18",
+                            "passes": 2,
+                            "fails": 0
+                        }
+                    }
+            },
+            "01_home": {
+                "name": "01_home",
+                "path": "::01_home",
+                "id": "d646852d2abe28c51b09c72ecc4dd9e1",
+                "groups": {},
+                "checks": {
+                        "home: status 200": {
+                            "fails": 0,
+                            "name": "home: status 200",
+                            "path": "::01_home::home: status 200",
+                            "id": "cdf19281614a9f8c1d0895ba2d1c25a2",
+                            "passes": 763
+                        },
+                        "home: contiene QuickPizza": {
+                            "name": "home: contiene QuickPizza",
+                            "path": "::01_home::home: contiene QuickPizza",
+                            "id": "945d863a34e8c27f26eda4d0f66558e7",
+                            "passes": 763,
+                            "fails": 0
+                        },
+                        "home: responde en < 500 ms": {
+                            "name": "home: responde en < 500 ms",
+                            "path": "::01_home::home: responde en < 500 ms",
+                            "id": "5e8e7feb76cbe72c6e0f899fa7d6ec37",
+                            "passes": 763,
+                            "fails": 0
+                        }
+                    }
+            },
+            "02_recomendar_pizza": {
+                "name": "02_recomendar_pizza",
+                "path": "::02_recomendar_pizza",
+                "id": "d57eb9cc500fc5267d449f762955e241",
+                "groups": {},
+                "checks": {
+                        "pizza: status 200": {
+                            "name": "pizza: status 200",
+                            "path": "::02_recomendar_pizza::pizza: status 200",
+                            "id": "759b94dbbdceb6f2ba36c75005ed89f9",
+                            "passes": 763,
+                            "fails": 0
+                        },
+                        "pizza: devuelve id y nombre": {
+                            "name": "pizza: devuelve id y nombre",
+                            "path": "::02_recomendar_pizza::pizza: devuelve id y nombre",
+                            "id": "330fe1c6c3b784eb0bc179e9f98a2040",
+                            "passes": 763,
+                            "fails": 0
+                        },
+                        "pizza: tiene ingredientes": {
+                            "name": "pizza: tiene ingredientes",
+                            "path": "::02_recomendar_pizza::pizza: tiene ingredientes",
+                            "id": "623dd40b330cb2a25dc79f61cacf455e",
+                            "passes": 763,
+                            "fails": 0
+                        },
+                        "pizza: respeta ingredientes excluidos": {
+                            "name": "pizza: respeta ingredientes excluidos",
+                            "path": "::02_recomendar_pizza::pizza: respeta ingredientes excluidos",
+                            "id": "6a6e4e587e2b5e7a861f6d106e67fba1",
+                            "passes": 763,
+                            "fails": 0
+                        },
+                        "pizza: respeta restricción vegetariana": {
+                            "path": "::02_recomendar_pizza::pizza: respeta restricción vegetariana",
+                            "id": "c6b287dde03641387e2d97daf43722f2",
+                            "passes": 763,
+                            "fails": 0,
+                            "name": "pizza: respeta restricción vegetariana"
+                        },
+                        "pizza: respeta herramientas excluidas": {
+                            "name": "pizza: respeta herramientas excluidas",
+                            "path": "::02_recomendar_pizza::pizza: respeta herramientas excluidas",
+                            "id": "7ddc77f9454e663f4d0d07dd8d604c32",
+                            "passes": 763,
+                            "fails": 0
+                        },
+                        "pizza detalle: status 200 o 404": {
+                            "id": "acdd31a8d33cbff9a8a252d7e5f6ee02",
+                            "passes": 763,
+                            "fails": 0,
+                            "name": "pizza detalle: status 200 o 404",
+                            "path": "::02_recomendar_pizza::pizza detalle: status 200 o 404"
+                        }
+                    }
+            },
+            "03_calificar_pizza": {
+                "name": "03_calificar_pizza",
+                "path": "::03_calificar_pizza",
+                "id": "96bcf18dd19d0f936abeaf46b32a20c8",
+                "groups": {},
+                "checks": {
+                        "rating crear: status 201": {
+                            "fails": 0,
+                            "name": "rating crear: status 201",
+                            "path": "::03_calificar_pizza::rating crear: status 201",
+                            "id": "ee3c2938c241b415e3ac1897f060d395",
+                            "passes": 763
+                        },
+                        "rating crear: devuelve id": {
+                            "fails": 0,
+                            "name": "rating crear: devuelve id",
+                            "path": "::03_calificar_pizza::rating crear: devuelve id",
+                            "id": "01d6c6b78b87c98bac503b5eb375e105",
+                            "passes": 763
+                        },
+                        "rating crear: estrellas correctas": {
+                            "path": "::03_calificar_pizza::rating crear: estrellas correctas",
+                            "id": "873156de4056865bba9853215d359a24",
+                            "passes": 763,
+                            "fails": 0,
+                            "name": "rating crear: estrellas correctas"
+                        },
+                        "rating crear: pizza correcta": {
+                            "name": "rating crear: pizza correcta",
+                            "path": "::03_calificar_pizza::rating crear: pizza correcta",
+                            "id": "d92de4e9540f8889d1b20060c6730fdf",
+                            "passes": 763,
+                            "fails": 0
+                        },
+                        "rating listar: status 200": {
+                            "passes": 763,
+                            "fails": 0,
+                            "name": "rating listar: status 200",
+                            "path": "::03_calificar_pizza::rating listar: status 200",
+                            "id": "4a66a9b9774bcb4f2bbb621046e6f234"
+                        },
+                        "rating listar: devuelve una lista": {
+                            "passes": 763,
+                            "fails": 0,
+                            "name": "rating listar: devuelve una lista",
+                            "path": "::03_calificar_pizza::rating listar: devuelve una lista",
+                            "id": "56db317d76dfeb40f6d8c6df9c95fce0"
+                        },
+                        "rating actualizar: status 200 o 400 (otra instancia)": {
+                            "id": "3910043d4958e0b96de9b72658dc8140",
+                            "passes": 763,
+                            "fails": 0,
+                            "name": "rating actualizar: status 200 o 400 (otra instancia)",
+                            "path": "::03_calificar_pizza::rating actualizar: status 200 o 400 (otra instancia)"
+                        },
+                        "rating actualizar: si es 200, estrellas actualizadas": {
+                            "name": "rating actualizar: si es 200, estrellas actualizadas",
+                            "path": "::03_calificar_pizza::rating actualizar: si es 200, estrellas actualizadas",
+                            "id": "4eb80d2cbef7bc63fbe4f3051c609b37",
+                            "passes": 763,
+                            "fails": 0
+                        },
+                        "rating eliminar: status 204 o 400 (otra instancia)": {
+                            "name": "rating eliminar: status 204 o 400 (otra instancia)",
+                            "path": "::03_calificar_pizza::rating eliminar: status 204 o 400 (otra instancia)",
+                            "id": "42a52ce5af7aebacd8ec9c7f34e871f4",
+                            "passes": 763,
+                            "fails": 0
+                        }
+                    }
+            }
+        },
+        "checks": {
+            "csrf: status 200": {
+                "name": "csrf: status 200",
+                "path": "::csrf: status 200",
+                "id": "4454657af0ae09b78a94e640578c1f43",
+                "passes": 20,
+                "fails": 0
+            },
+            "csrf: token de 32 caracteres": {
+                "passes": 20,
+                "fails": 0,
+                "name": "csrf: token de 32 caracteres",
+                "path": "::csrf: token de 32 caracteres",
+                "id": "80e7186ec4db0208ba61ce13dbf19c14"
+            },
+            "login: status 200": {
+                "fails": 0,
+                "name": "login: status 200",
+                "path": "::login: status 200",
+                "id": "4d9cb0041884c26a6b714904c7aba027",
+                "passes": 20
+            },
+            "login: token de 16 caracteres": {
+                "name": "login: token de 16 caracteres",
+                "path": "::login: token de 16 caracteres",
+                "id": "9b3d54113b5cc2b97acd2042bac2ef80",
+                "passes": 20,
+                "fails": 0
+            }
+        }
+    },
+    "metrics": {
+        "http_req_connecting": {
+            "p(99)": 0,
+            "max": 146.701,
+            "avg": 0.5563769030820646,
+            "min": 0,
+            "med": 0,
+            "p(90)": 0,
+            "p(95)": 0
+        },
+        "http_reqs": {
+            "rate": 13.457522025092512,
+            "count": 5386
+        },
+        "iterations": {
+            "count": 763,
+            "rate": 1.9064406433616017
+        },
+        "http_req_receiving": {
+            "min": 0.007,
+            "med": 0.104,
+            "p(90)": 0.2585000000000001,
+            "p(95)": 0.4144999999999995,
+            "p(99)": 1.174149999999999,
+            "max": 5.64,
+            "avg": 0.15876884515410308
+        },
+        "vus": {
+            "value": 1,
+            "min": 0,
+            "max": 20
+        },
+        "iteration_duration": {
+            "med": 9187.170667,
+            "p(90)": 10667.524599800001,
+            "p(95)": 11002.110229499998,
+            "p(99)": 11591.984632079999,
+            "max": 12079.351792,
+            "avg": 9154.980497693303,
+            "min": 6023.7665
+        },
+        "http_req_blocked": {
+            "p(95)": 0.003,
+            "p(99)": 0.005,
+            "max": 373.103,
+            "avg": 1.1598020794654813,
+            "min": 0,
+            "med": 0.001,
+            "p(90)": 0.002
+        },
+        "http_req_duration{name:DELETE /api/ratings/{id}}": {
+            "avg": 142.1036435124508,
+            "min": 135.91,
+            "med": 142.253,
+            "p(90)": 144.8414,
+            "p(95)": 146.1912,
+            "p(99)": 150.23865999999998,
+            "max": 161.219,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "http_req_tls_handshaking": {
+            "p(95)": 0,
+            "p(99)": 0,
+            "max": 159.966,
+            "avg": 0.5876058299294467,
+            "min": 0,
+            "med": 0,
+            "p(90)": 0
+        },
+        "data_received": {
+            "count": 5816293,
+            "rate": 14532.657102096437
+        },
+        "http_req_duration": {
+            "max": 261.945,
+            "avg": 154.52592053471943,
+            "min": 135.91,
+            "med": 143.6805,
+            "p(90)": 188.9415,
+            "p(95)": 224.57499999999996,
+            "p(99)": 251.19115,
+            "thresholds": {
+                "p(99)<1000": false,
+                "p(95)<500": false
+            }
+        },
+        "http_req_waiting": {
+            "avg": 153.96595432602993,
+            "min": 135.519,
+            "med": 143.191,
+            "p(90)": 188.3855,
+            "p(95)": 223.78649999999993,
+            "p(99)": 250.40865,
+            "max": 261.549
+        },
+        "consistencia_rating_eliminar": {
+            "passes": 762,
+            "fails": 1,
+            "value": 0.9986893840104849
+        },
+        "consistencia_pizza_detalle": {
+            "passes": 763,
+            "fails": 0,
+            "value": 1
+        },
+        "http_req_sending": {
+            "p(95)": 1.0612499999999994,
+            "p(99)": 2.7000499999999987,
+            "max": 7.941,
+            "avg": 0.40119736353509006,
+            "min": 0.021,
+            "med": 0.273,
+            "p(90)": 0.747
+        },
+        "consistencia_rating_actualizar": {
+            "fails": 1,
+            "passes": 762,
+            "value": 0.9986893840104849
+        },
+        "http_req_duration{name:GET /api/ratings}": {
+            "avg": 142.5176500655309,
+            "min": 137.087,
+            "med": 142.771,
+            "p(90)": 145.0368,
+            "p(95)": 146.0489,
+            "p(99)": 150.62213999999997,
+            "max": 159.937,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "http_req_duration{name:POST /api/ratings}": {
+            "avg": 159.8058191349935,
+            "min": 146.236,
+            "med": 159.88,
+            "p(90)": 168.556,
+            "p(95)": 171.0192,
+            "p(99)": 176.45749999999998,
+            "max": 191.411,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "errores_negocio": {
+            "passes": 0,
+            "fails": 5341,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "http_req_duration{name:POST /api/pizza}": {
+            "max": 261.945,
+            "avg": 209.4669305373527,
+            "min": 154.553,
+            "med": 210.819,
+            "p(90)": 247.8632,
+            "p(95)": 253.6037,
+            "p(99)": 258.35888,
+            "thresholds": {
+                "p(95)<800": false
+            }
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 5386,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "data_sent": {
+            "count": 1575423,
+            "rate": 3936.370167348184
+        },
+        "http_req_duration{name:PUT /api/ratings/{id}}": {
+            "avg": 142.62694364351248,
+            "min": 136.387,
+            "med": 142.771,
+            "p(90)": 145.1462,
+            "p(95)": 147.0232,
+            "p(99)": 150.73766,
+            "max": 185.769,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "vus_max": {
+            "min": 20,
+            "max": 20,
+            "value": 20
+        },
+        "pizza_cumple_calorias": {
+            "passes": 763,
+            "fails": 0,
+            "value": 1
+        },
+        "duracion_flujo_completo": {
+            "avg": 7153.310615989515,
+            "min": 4533,
+            "med": 7138,
+            "p(90)": 8471.8,
+            "p(95)": 8745,
+            "p(99)": 9220.66,
+            "max": 9444
+        },
+        "http_req_duration{name:POST /api/users/token/login}": {
+            "avg": 143.71154545454544,
+            "min": 136.591,
+            "med": 142.6225,
+            "p(90)": 147.4436,
+            "p(95)": 149.90365,
+            "p(99)": 159.56446,
+            "max": 162.1,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "http_req_duration{name:GET /api/pizza/{id}}": {
+            "max": 171.531,
+            "avg": 143.04476146789,
+            "min": 137.263,
+            "med": 143.25,
+            "p(90)": 145.5902,
+            "p(95)": 146.9695,
+            "p(99)": 150.90508,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "pizzas_recomendadas": {
+            "count": 763,
+            "rate": 1.9064406433616017
+        },
+        "http_req_duration{name:GET /}": {
+            "avg": 142.82529488859754,
+            "min": 136.5,
+            "med": 143.296,
+            "p(90)": 145.1544,
+            "p(95)": 146.3624,
+            "p(99)": 148.09171999999998,
+            "max": 151.811,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "checks": {
+            "passes": 14585,
+            "fails": 0,
+            "thresholds": {
+                "rate>0.99": false
+            },
+            "value": 1
+        },
+        "calificaciones_creadas": {
+            "count": 763,
+            "rate": 1.9064406433616017
+        },
+        "group_duration": {
+            "p(95)": 3267.1705583999997,
+            "p(99)": 3531.27758104,
+            "max": 3597.229041,
+            "avg": 1031.6242445836617,
+            "min": 136.995041,
+            "med": 358.423458,
+            "p(90)": 2982.8114082
+        },
+        "http_req_duration{expected_response:true}": {
+            "avg": 154.52592053471943,
+            "min": 135.91,
+            "med": 143.6805,
+            "p(90)": 188.9415,
+            "p(95)": 224.57499999999996,
+            "p(99)": 251.19115,
+            "max": 261.945
+        },
+        "consistencia_rating_listar": {
+            "passes": 763,
+            "fails": 0,
+            "value": 1
+        }
+    },
+    "setup_data": {}
+}
