@@ -4,6 +4,7 @@
 #   .\run.ps1 smoke
 #   .\run.ps1 carga
 #   .\run.ps1 estres -e VUS_MAX=100
+#   .\run.ps1 estres --grafana          (envía además las métricas a Prometheus local para Grafana)
 #
 # Si Windows bloquea el script ("la ejecución de scripts está deshabilitada"):
 #   powershell -ExecutionPolicy Bypass -File .\run.ps1 smoke
@@ -15,7 +16,7 @@ if ($args.Count -lt 1 -or $pruebas -notcontains $args[0]) {
 }
 $Prueba = $args[0]
 $Extra = @()
-if ($args.Count -gt 1) { $Extra = $args[1..($args.Count - 1)] }
+if ($args.Count -gt 1) { $Extra = @($args[1..($args.Count - 1)]) }
 
 $fecha = Get-Date -Format 'yyyyMMdd-HHmmss'
 New-Item -ItemType Directory -Force -Path reports | Out-Null
@@ -25,7 +26,16 @@ $env:K6_WEB_DASHBOARD_OPEN = 'true'     # abre el navegador automáticamente
 $env:K6_WEB_DASHBOARD_PERIOD = '5s'     # refresco de las gráficas
 $env:K6_WEB_DASHBOARD_EXPORT = "reports/$Prueba-$fecha.html"
 
-$k6Args = @('run', '--summary-export', "reports/$Prueba-$fecha-summary.json") + $Extra + @("scenarios/$Prueba.js")
+$Salida = @()
+if ($Extra.Count -gt 0 -and $Extra[0] -eq '--grafana') {
+  $Extra = @($Extra | Select-Object -Skip 1)
+  if (-not $env:K6_PROMETHEUS_RW_SERVER_URL) { $env:K6_PROMETHEUS_RW_SERVER_URL = 'http://localhost:9090/api/v1/write' }
+  $env:K6_PROMETHEUS_RW_TREND_STATS = 'p(90),p(95),p(99),avg,min,max'
+  $Salida = @('-o', 'experimental-prometheus-rw', '--tag', "testid=$Prueba-$fecha")
+  Write-Host ">> Enviando métricas a Prometheus: $($env:K6_PROMETHEUS_RW_SERVER_URL) (testid=$Prueba-$fecha)" -ForegroundColor Cyan
+}
+
+$k6Args = @('run', '--summary-export', "reports/$Prueba-$fecha-summary.json") + $Salida + $Extra + @("scenarios/$Prueba.js")
 Write-Host ">> k6 $($k6Args -join ' ')" -ForegroundColor Cyan
 & k6 @k6Args
 

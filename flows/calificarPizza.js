@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check, group } from 'k6';
-import { BASE_URL, DEBUG } from '../lib/config.js';
+import { BASE_URL, DEBUG, TIEMPO_MAX } from '../lib/config.js';
 import { authHeaders, invalidarToken } from '../lib/auth.js';
 import {
   erroresNegocio,
@@ -43,6 +43,7 @@ export function calificarPizza(token, pizzaId, estrellas) {
 
     const okCrear = check(resCrear, {
       'rating crear: status 201': (r) => r.status === 201,
+      [`rating crear: responde en < ${TIEMPO_MAX} ms`]: (r) => r.timings.duration < TIEMPO_MAX,
       'rating crear: devuelve id': () => typeof ratingId === 'number' && ratingId > 0,
       'rating crear: estrellas correctas': (r) => jsonSeguro(r, 'stars') === estrellas,
       'rating crear: pizza correcta': (r) => jsonSeguro(r, 'pizza_id') === pizzaId,
@@ -59,6 +60,7 @@ export function calificarPizza(token, pizzaId, estrellas) {
 
     const okListar = check(resListar, {
       'rating listar: status 200': (r) => r.status === 200,
+      [`rating listar: responde en < ${TIEMPO_MAX} ms`]: (r) => r.timings.duration < TIEMPO_MAX,
       'rating listar: devuelve una lista': () => Array.isArray(lista),
     });
     erroresNegocio.add(!okListar);
@@ -79,6 +81,7 @@ export function calificarPizza(token, pizzaId, estrellas) {
     consistenciaActualizar.add(resActualizar.status === 200);
     const okActualizar = check(resActualizar, {
       'rating actualizar: status 200 o 400 (otra instancia)': (r) => r.status === 200 || r.status === 400,
+      [`rating actualizar: responde en < ${TIEMPO_MAX} ms`]: (r) => r.timings.duration < TIEMPO_MAX,
       'rating actualizar: si es 200, estrellas actualizadas': (r) =>
         r.status !== 200 || jsonSeguro(r, 'stars') === nuevasEstrellas,
     });
@@ -94,6 +97,7 @@ export function calificarPizza(token, pizzaId, estrellas) {
     consistenciaEliminar.add(resEliminar.status === 204);
     const okEliminar = check(resEliminar, {
       'rating eliminar: status 204 o 400 (otra instancia)': (r) => r.status === 204 || r.status === 400,
+      [`rating eliminar: responde en < ${TIEMPO_MAX} ms`]: (r) => r.timings.duration < TIEMPO_MAX,
     });
     erroresNegocio.add(!okEliminar);
     if (DEBUG) console.log(`[rating eliminar] ${resEliminar.status} ${resEliminar.body}`);

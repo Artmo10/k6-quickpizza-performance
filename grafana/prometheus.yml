@@ -1,0 +1,9 @@
+# Configuración mínima de Prometheus para recibir las métricas de k6.
+# k6 las envía con "remote write"; Prometheus solo necesita guardarlas.
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['localhost:9090']

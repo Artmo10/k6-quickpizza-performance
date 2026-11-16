@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check, group } from 'k6';
-import { BASE_URL, DEBUG } from '../lib/config.js';
+import { BASE_URL, DEBUG, TIEMPO_MAX, TIEMPO_MAX_PIZZA } from '../lib/config.js';
 import { authHeaders } from '../lib/auth.js';
 import { erroresNegocio, pizzasRecomendadas, consistenciaPizza, pizzaCumpleCalorias, jsonSeguro } from '../lib/utils.js';
 
@@ -34,6 +34,7 @@ export function recomendarPizza(token, restriccion) {
 
     const ok = check(res, {
       'pizza: status 200': (r) => r.status === 200,
+      [`pizza: responde en < ${TIEMPO_MAX_PIZZA} ms`]: (r) => r.timings.duration < TIEMPO_MAX_PIZZA,
       'pizza: devuelve id y nombre': () => pizzaId !== null && !!pizza.name,
       'pizza: tiene ingredientes': () => ingredientes.length > 0,
       // Validaciones de negocio: la recomendación respeta las restricciones pedidas
@@ -68,6 +69,7 @@ export function recomendarPizza(token, restriccion) {
 
     const okDetalle = check(resDetalle, {
       'pizza detalle: status 200 o 404': (r) => r.status === 200 || r.status === 404,
+      [`pizza detalle: responde en < ${TIEMPO_MAX} ms`]: (r) => r.timings.duration < TIEMPO_MAX,
     });
     erroresNegocio.add(!okDetalle);
   });
